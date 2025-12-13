@@ -1,4 +1,4 @@
-     local keyListUrl = "https://raw.githubusercontent.com/WM5M/564756558758547545475566858754hnfvngfjhgvgjfjghfffjfgffjgj/refs/heads/main/wzmkeys.json"
+    local keyListUrl = "https://raw.github.com/WM5M/564756558758547545475566858754hnfvngfjhgvgjfjghfffjfgffjgj/refs/heads/main/wzmkeys.json"
     local KeysBin = MachoWebRequest(keyListUrl)
     local CurrentKey = MachoAuthenticationKey()
     local STRICT_EXPIRES = true
@@ -7236,4 +7236,5 @@ end
             [1] = { name = "Gangster", hash = "Gang1H" },
             [2] = { name = "Wild", hash = "GangFemale" },
             [3] = { name = "Red Neck", hash = "Hillbilly" }
+
         }
