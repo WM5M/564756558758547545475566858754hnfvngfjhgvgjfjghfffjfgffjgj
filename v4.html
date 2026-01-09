@@ -250,19 +250,18 @@
                 }
             }
 
-            // Arrow navigation - now works properly
+            // Arrow navigation - now sends back the index to Lua for ScrollOne
             if (data.action === 'keydown') {
                 if (data.key === 'ArrowUp') {
                     currentIndex = (currentIndex - 1 + elements.length) % elements.length;
                     updateSelection();
-                    // Send back the new index to Lua
-                    postMessage({ action: "keydown", index: currentIndex });
+                    MachoSendDuiMessage(event.source, json.encode({ action: "keydown", index: currentIndex }));
                 } else if (data.key === 'ArrowDown') {
                     currentIndex = (currentIndex + 1) % elements.length;
                     updateSelection();
-                    postMessage({ action: "keydown", index: currentIndex });
+                    MachoSendDuiMessage(event.source, json.encode({ action: "keydown", index: currentIndex }));
                 } else if (data.key === 'Enter') {
-                    postMessage({ action: "enter" });
+                    MachoSendDuiMessage(event.source, json.encode({ action: "enter" }));
                 }
             }
         });
