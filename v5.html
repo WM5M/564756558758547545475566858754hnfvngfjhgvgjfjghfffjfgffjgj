@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JayMods</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="menu-container" class="hidden">
+<div id="header">
+<span id="logo-text">JayMods</span>
+</div>
+<img src="<https://jaythaagamer.simdif.com/images/th/sd_6935ae44db1fd.png?no_cache=1765129304>" alt="Kobra Banner" style="width: 100%; margin-bottom: 10px;">
+<div id="breadcrumb"></div>
+<div id="categories"></div>
+<div id="elements"></div>
+</div>
+<div id="notifications"></div>
+<div id="keyboardContainer" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.9); padding: 20px; border: 2px solid red; border-radius: 10px; text-align: center; z-index: 1000;">
+&nbsp;&nbsp;&nbsp;&nbsp;<h2 id="keyboardTitle">Title</h2>
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="keyboardInput" readonly style="width: 100%; padding: 10px; font-size: 18px; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid white; border-radius: 5px;">
+</div>
+<script src="ui.js"></script>
+<script>
+&nbsp;&nbsp;&nbsp;&nbsp;window.addEventListener('message', function(event) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const data = [event.data](http://event.data);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (data.action === 'updateKeyboard') {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const keyboardDiv = document.getElementById('keyboardContainer');
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[keyboardDiv.style](http://keyboardDiv.style).display = data.visible ? 'block' : 'none';
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (data.visible) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('keyboardTitle').innerText = data.title || 'Input';
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('keyboardInput').value = data.value || '';
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Add your existing event handlers here...
+&nbsp;&nbsp;&nbsp;&nbsp;});
+</script>
+</body>
+</html>
