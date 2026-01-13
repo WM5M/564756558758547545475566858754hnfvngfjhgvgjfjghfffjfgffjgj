@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KOBRA MENU</title>
+
+<style>
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: transparent;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    color: white;
+    user-select: none;
+}
+
+/* ================= MENU ================= */
+#menu-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 520px;
+    height: 680px;
+    background: rgba(0,0,0,0.92);
+    border: 3px solid red;
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(255,0,0,0.7);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ================= HEADER / BANNER ================= */
+#header {
+    height: 80px;
+    background: url('https://jaythaagamer.simdif.com/images/public/sd_696292dfc3164.png') center/cover no-repeat;
+    border-bottom: 2px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px red;
+}
+
+#logo-text {
+    font-size: 26px;
+    font-weight: bold;
+    color: red;
+    text-shadow: 0 0 15px red;
+}
+
+/* ================= BREADCRUMB ================= */
+#breadcrumb {
+    padding: 10px;
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+    border-bottom: 1px solid red;
+}
+
+/* ================= ELEMENTS ================= */
+#elements {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ================= ELEMENT ================= */
+.element {
+    width: 92%;
+    padding: 14px;
+    text-align: center;
+    border: 2px solid red;
+    border-radius: 10px;
+    background: rgba(20,20,20,0.85);
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.element.selected {
+    background: rgba(255,0,0,0.35);
+    box-shadow: 0 0 20px rgba(255,0,0,0.9);
+    transform: scale(1.05);
+}
+
+/* ================= SCROLLBAR ================= */
+#elements::-webkit-scrollbar {
+    width: 8px;
+}
+
+#elements::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.6);
+}
+
+#elements::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 4px;
+}
+
+#elements::-webkit-scrollbar-thumb:hover {
+    background: #cc0000;
+}
+
+/* ================= KEYBOARD ================= */
+#keyboardContainer {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+#keyboardBox {
+    width: 520px;
+    padding: 30px;
+    background: rgba(0,0,0,0.95);
+    border: 3px solid red;
+    border-radius: 14px;
+    box-shadow: 0 0 50px rgba(255,0,0,0.9);
+    text-align: center;
+}
+
+#keyboardTitle {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: red;
+    text-shadow: 0 0 15px red;
+}
+
+#keyboardInput {
+    width: 100%;
+    padding: 16px;
+    font-size: 26px;
+    text-align: center;
+    background: #111;
+    border: 2px solid red;
+    border-radius: 8px;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+<div id="menu-container">
+    <div id="header">
+        <span id="logo-text">KOBRA MENU</span>
+    </div>
+
+    <div id="breadcrumb"></div>
+    <div id="categories"></div>
+    <div id="elements"></div>
+</div>
+
+<!-- KEYBOARD -->
+<div id="keyboardContainer">
+    <div id="keyboardBox">
+        <div id="keyboardTitle">Choose Menu Key</div>
+        <input id="keyboardInput" readonly>
+    </div>
+</div>
+
+<div id="notifications"></div>
+
+<script src="ui.js"></script>
+
+<script>
+/* ONLY VISUAL SYNC – NO NAV LOGIC */
+
+window.addEventListener('message', e => {
+    const d = e.data;
+
+    if (d.action === 'showUI') {
+        document.getElementById('menu-container').style.display =
+            d.visible ? 'flex' : 'none';
+    }
+
+    if (d.action === 'updateKeyboard') {
+        const kb = document.getElementById('keyboardContainer');
+        kb.style.display = d.visible ? 'flex' : 'none';
+        document.getElementById('keyboardTitle').textContent =
+            d.title || 'Choose Menu Key';
+        document.getElementById('keyboardInput').value =
+            d.value || '';
+    }
+});
+</script>
+
+</body>
+</html>
